@@ -5,22 +5,22 @@ category: Basics
 title: Coding Conventions
 ---
 
-# Coding Conventions
+# Convenciones de Codificación
 
-This page contains the current coding style for the Kotlin language.
+Esta página contiene el estilo de codificación actual para el lenguaje Kotlin.
 
-## Naming Style
-If in doubt, default to the Java Coding Conventions such as:
+## Estilos de nombramiento
+En caso de duda, por defecto use las convenciones de codificación en Java, tales como:
 
-* use of camelCase for names (and avoid underscore in names)
-* types start with upper case
-* methods and properties start with lower case
-* use 4 space indentation
-* public functions should have documentation such that it appears in Kotlin Doc
+* Usar camelCase para nombres. (Y evitar el subrayado en los nombres)
+* Los tipos comienzan con mayuscula.
+* Métodos y propiedades comienzan con minuscula.
+* usar 4 espacios para la identación.
+* Las funciones públicas deben tener documentación tal como aparezce en Kotlin Doc.
 
-## Colon
+## Llaves
 
-There is a space before colon where colon separates type and supertype and there's no space where colon separates instance and type:
+Hay un espacio antes de la llave donde la llave separa el tipo y el supertipo y no hay espacio donde la llave separa la instancia y el tipo:
 
 ``` kotlin
 interface Foo<out T : Any> : Bar {
@@ -30,27 +30,24 @@ interface Foo<out T : Any> : Bar {
 
 ## Lambdas
 
-In lambda expressions, spaces should be used around the curly braces, as well as around the arrow which separates the parameters
-from the body. Whenever possible, a lambda should be passed outside of parentheses.
+En las expresiones lambda, se deben usar espacios alrededor de las llaves, así como alrededor de la flecha que separa los parámetros del cuerpo. Siempre que sea posible, un lambda debe pasar fuera de los paréntesis.
 
 ``` kotlin
 list.filter { it > 10 }.map { element -> element * 2 }
 ```
 
-In lambdas which are short and not nested, it's recommended to use the `it` convention instead of declaring the parameter
-explicitly. In nested lambdas with parameters, parameters should be always declared explicitly.
+En lambdas que son cortos y no anidados, se recomienda utilizar la convención `it` en lugar de declarar el parámetro
+explícitamente. En lambdas anidados con parámetros, los parámetros siempre deben declararse explícitamente.
 
-## Class header formatting
+## Formato de encabezado de clase
 
-Classes with a few arguments can be written in a single line:
+Las clases con pocos argumentos pueden escribirse en una sola línea:
 
 ```kotlin 
 class Person(id: Int, name: String)
 ```
 
-Classes with longer headers should be formatted so that each primary constructor argument is in a separate line with indentation.
-Also, the closing parenthesis should be on a new line. If we use inheritance, then the superclass constructor call or list of implemented interfaces
-should be located on the same line as the parenthesis:
+Las clases con encabezados más largos deben formatearse de modo que cada argumento del constructor primario esté en una línea separada con indentación. Además, el paréntesis de cierre debe estar en una nueva línea. Si utilizamos la herencia, la llamada del constructor de superclase o la lista de interfaces implementadas Debe ubicarse en la misma línea que el paréntesis:
 
 ```kotlin 
 class Person(
@@ -62,7 +59,7 @@ class Person(
 }
 ```
 
-For multiple interfaces, the superclass constructor call should be located first and then each interface should be located in a different line:
+Para las interfaces múltiples, la llamada del constructor de la superclase debe ser localizada primero y entonces cada interfaz debe estar situada en una línea diferente:
 
 ```kotlin 
 class Person(
@@ -75,11 +72,11 @@ class Person(
 }
 ```
 
-Constructor parameters can use either the regular indent or the continuation indent (double the regular indent).
+Los parámetros del constructor pueden utilizar el guión regular o el guión de continuación (doble el guión regular).
 
 ## Unit
 
-If a function returns Unit, the return type should be omitted:
+Si una función devuelve Unit, el tipo de retorno debe omitirse:
 
 ``` kotlin
 fun foo() { // ": Unit" is omitted here
@@ -87,14 +84,14 @@ fun foo() { // ": Unit" is omitted here
 }
 ```
 
-## Functions vs Properties
+## Funciones vs Propiedades
 
-In some cases functions with no arguments might be interchangeable with read-only properties. 
-Although the semantics are similar, there are some stylistic conventions on when to prefer one to another.
+En algunos casos, las funciones sin argumentos pueden ser intercambiables con propiedades de sólo lectura.
+Aunque la semántica es similar, hay algunas convenciones estilísticas sobre cuándo preferir uno a otro.
 
-Prefer a property over a function when the underlying algorithm:
+Preferir una propiedad sobre una función cuando el algoritmo subyacente:
 
-* does not throw any Exceptions
-* has a `O(1)` complexity
-* is cheap to calculate (or caсhed on the first run)
-* returns the same result over invocations 
+* No arroja ninguna excepción
+* Tiene una complejidad de `O(1)`
+* El costo del calculo es bajo (o es calculado en la primera ejecución)
+* Devuelve el mismo resultado sobre invocaciones
